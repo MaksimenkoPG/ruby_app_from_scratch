@@ -1,19 +1,19 @@
 # Boilerplate of a simple ruby application
 Hi folks!
 Today we're going to build a simple ruby application from scratch.
-With Bundler, Rake handmade console & autoload of code.
-This kind of application can be useful when you want to make something bigger than the simple script and smaller than an application based on the framework.
+With Bundler, Rake, handmade console & autoload of code.
+This kind of application can be useful when you want to make something bigger than a simple script and smaller than an application based on the framework.
 Usually, I use this kind of application for testing API endpoints.
 It helps me to organize all my code and avoid DRY.
 This application will use [Github API](https://docs.github.com/en/rest/reference/repos#get-a-repository) to get information about the repository and print it to STDOUT.
 All code you may find in my repository [https://github.com/MaksimenkoPG/ruby_app_from_scratch](https://github.com/MaksimenkoPG/ruby_app_from_scratch).
 
-## Init & insall Bundler
-First of all, let's create folder for our application.
+## Init & install Bundler
+First of all, let's create a folder for our application.
 ```bash
 mkdir ruby_app_from_scratch && cd ruby_app_from_scratch
 ```
-After that, let's install Ruby. In this article I use **ruby-2.7.3**.
+After that, let's install Ruby. In this article, I use **ruby-2.7.3**.
 For development I prefer RVM, but you can your favorite ruby manager, like asdf or rbenv.
 In the next step, we will install Bundler. It will help us to organize dependencies for the application. Of course, you may manage your dependencies via **gem install** but, in the future, this approach becomes a mess.
 Let's install and init it.
@@ -69,8 +69,8 @@ To set up Rake we have to add Rakefile in the root folder of our application wit
 ```ruby
 Dir.glob('lib/tasks/**/*.rake').each { |file_path| load file_path }
 ```
-This code loads all tasks from **lib/tasks** folder.
-Let's create this folder and add our rake task into it.
+This code loads all tasks from the **lib/tasks** folder.
+Let's create this folder and add our rake task to it.
 ```bash
 mkdir -p lib/tasks
 ```
@@ -191,7 +191,7 @@ require 'bundler/setup' # Set up gems listed in the Gemfile.
 ```
 The same structure, I mean application.rb + boot.rb, you can meet in any modern Rails application.
 **boot.rb** is just loads Bundler environment for us.
-Now, we have to have an access to our components out from IRB console.
+Now, we should have an access to our components out from the IRB console.
 ```ruby
 # irb
 require_relative 'config/application'
@@ -216,7 +216,7 @@ end
 
 Dir.glob('lib/tasks/**/*.rake').each { |file_path| load file_path }
 ```
-And change our rake task as the following.
+And change our rake task.
 ```ruby
 # lib/tasks/print_repository_info.rake
 desc 'Print repo info, usage: rake print_repository_info repository_url=repository_url'
@@ -224,7 +224,7 @@ task print_repository_info: :environment do
   PrintRepositoryInfo.perform url: ENV['repository_url']
 end
 ```
-And, it we've restored our functionality.
+And, we've restored our functionality.
 ```bash
 rake print_repository_info repository_url=https://api.github.com/repos/rails/rails
 ```
@@ -250,7 +250,7 @@ end
 
 IRB.start
 ```
-At the next step we have to make this script executable by the following command.
+At the next step, we have to make this script executable by the following command.
 ```bash
 chmod +x bin/console
 ```
